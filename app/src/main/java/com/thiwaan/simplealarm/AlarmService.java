@@ -30,14 +30,14 @@ public class AlarmService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        if (intent != null && intent.getAction() != null && intent.getAction().equals("ACTION_ALARM")) {
+//        if (intent != null && intent.getAction() != null && intent.getAction().equals("ACTION_ALARM")) {
             startForeground(NOTIFICATION_ID, createNotification());
 
             // Play alarm sound
             if (!ringtone.isPlaying()) {
                 ringtone.play();
             }
-        }
+//        }
 
         return START_NOT_STICKY;
     }
@@ -61,7 +61,7 @@ public class AlarmService extends Service {
         createNotificationChannel();
 
         Intent notificationIntent = new Intent(this, MainActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_IMMUTABLE);
 
         return new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setContentTitle("Alarm")

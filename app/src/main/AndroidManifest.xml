@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
         android:allowBackup="true"
@@ -31,13 +32,18 @@
             android:enabled="true"
             android:exported="false">
             <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="ACTION_ALARM" />
             </intent-filter>
         </receiver>
 
         <service
             android:name=".AlarmJobService"
             android:permission="android.permission.BIND_JOB_SERVICE" />
+
+        <service
+            android:name=".AlarmService"
+            android:enabled="true"
+            android:exported="false" />
 
     </application>
 
