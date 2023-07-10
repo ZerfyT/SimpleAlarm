@@ -1,7 +1,5 @@
 package com.thiwaan.simplealarm;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Intent;
@@ -10,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TimePicker;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Calendar;
 import java.util.Locale;
@@ -21,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
     private TimePicker timePicker;
     private Button setAlarmButton;
     private Button cancelAlarmButton;
+
+    private Button recentAlarmsButton;
     private DatabaseHelper databaseHelper;
 
     @Override
@@ -33,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         timePicker = findViewById(R.id.timePicker);
         setAlarmButton = findViewById(R.id.setAlarmButton);
         cancelAlarmButton = findViewById(R.id.cancelAlarmButton);
+        recentAlarmsButton = findViewById(R.id.recentAlarmsButton);
 
         setAlarmButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,6 +50,13 @@ public class MainActivity extends AppCompatActivity {
                 cancelAlarm();
             }
         });
+
+        recentAlarmsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), RecentAlarms.class));
+            }
+        });
     }
 
     private void setAlarm() {
@@ -59,9 +69,9 @@ public class MainActivity extends AppCompatActivity {
         calendar.set(Calendar.SECOND, 0);
 
         Intent intent = new Intent(this, AlarmReceiver.class);
-        pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_IMMUTABLE);
+        pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
 
-        alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+        alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
 
 //        String time = String.format("%02d:%02d", hour, minute);
         String time = String.format(Locale.getDefault(), "%02d:%02d", hour, minute);
