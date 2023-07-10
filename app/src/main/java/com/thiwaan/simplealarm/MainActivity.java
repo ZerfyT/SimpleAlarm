@@ -73,7 +73,6 @@ public class MainActivity extends AppCompatActivity {
 
         alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
 
-//        String time = String.format("%02d:%02d", hour, minute);
         String time = String.format(Locale.getDefault(), "%02d:%02d", hour, minute);
         databaseHelper.saveAlarm(time);
 

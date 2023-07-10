@@ -37,13 +37,11 @@ public class RecentAlarms extends AppCompatActivity {
             @Override
             public void onEditClick(Alarm alarm) {
                 // Handle edit click
-                // Implement your logic to edit the alarm
             }
 
             @Override
             public void onDeleteClick(Alarm alarm) {
                 // Handle delete click
-                // Implement your logic to delete the alarm
                 deleteAlarm(alarm);
             }
         });

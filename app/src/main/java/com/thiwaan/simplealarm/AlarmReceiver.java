@@ -27,24 +27,10 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         Toast.makeText(context, "Alarm Ringing...", Toast.LENGTH_SHORT).show();
 
-//        String action = intent.getAction();
-//        if (action != null && action.equals(STOP_ACTION)) {
-//            stopRingtone();
-//            return;
-//        }
-
         Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
-//        if (alarmSound == null) {
-        // Default alarm sound is not available, use another sound
-//            alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-//        }
-//        if (alarmSound != null) {
         ringtone = RingtoneManager.getRingtone(context, alarmSound);
-//            if (ringtone != null) {
         ringtone.play();
         showNotification(context);
-//            }
-//        }
     }
 
     private void stopRingtone() {
@@ -71,13 +57,6 @@ public class AlarmReceiver extends BroadcastReceiver {
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true);
-//                .setOngoing(true);
-
-        // Create the stop action for the notification
-//        Intent stopIntent = new Intent(context, AlarmReceiver.class);
-//        stopIntent.setAction(STOP_ACTION);
-//        PendingIntent stopPendingIntent = PendingIntent.getBroadcast(context, 0, stopIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-//        builder.addAction(android.R.drawable.ic_menu_close_clear_cancel, "Stop", stopPendingIntent);
 
         notificationManager.notify(NOTIFICATION_ID, builder.build());
     }

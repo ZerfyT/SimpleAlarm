@@ -32,12 +32,4 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         long result = db.insert("alarms", null, contentValues);
         return result != -1;
     }
-
-//    public boolean updateAlarm(String time) {
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        ContentValues contentValues = new ContentValues();
-//        contentValues.put("time", time);
-//        long result = db.update("alarms", contentValues, "time = ?", new String[]{time});
-//        return result != -1;
-//    }
 }
